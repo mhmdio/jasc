@@ -1,5 +1,7 @@
 # Everything as a code with Jenkins
 
+![jasc](docs/jenkins_logo.png)
+
 - Configuration as a code using JCasC plugin
 - Pipeline as a code using Pipeline DSL plugin
 - Jenkins jobs as code using Job DSL plugin
