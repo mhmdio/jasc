@@ -1,0 +1,39 @@
+# https://taskfile.dev
+
+version: '3'
+
+dotenv: ['.env']
+
+env:
+  JENKINS_PORT: 8080
+
+vars:
+  GREETING: -> Jenkins Taskfile!
+  PROFILE: aes-dev
+
+tasks:
+
+  default:
+    desc: Hello MSG.
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  docker:
+    desc: Docker Ops
+    cmds:
+      - task: docker:build
+      - task: docker:run
+
+
+  docker:build:
+    desc: Docker Build
+    cmds:
+      - docker build -t jenkins:jcasc .
+    silent: true
+
+  docker:run:
+    desc: Docker Run
+    cmds:
+      - docker run --name jenkins --rm -p $JENKINS_PORT:$JENKINS_PORT --env JENKINS_ADMIN_ID=$JENKINS_ADMIN_ID --env JENKINS_ADMIN_PASSWORD=$JENKINS_ADMIN_PASSWORD jenkins:jcasc
+    silent: true
